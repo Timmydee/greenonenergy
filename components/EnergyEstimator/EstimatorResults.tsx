@@ -36,14 +36,14 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
           </div>
           <p>
             Total Energy Usage:{" "}
-            <strong>{results.totalEnergy.toFixed(2)} kWh/day</strong>
+            <strong>{results?.totalEnergy.toFixed(2)} kWh/day</strong>
           </p>
           <p>
             Recommended Panel Size: <strong>{results.panelSize} kW</strong>
           </p>
           <p>
             Recommended Inverter Size:{" "}
-            <strong>{results.inverterSize} kW</strong>
+            <strong>{results?.inverterSize} kW</strong>
           </p>
           <div className="bg-gray-100 p-3 rounded lg:w-[500px]">
             <h3 className="text-lg font-semibold">Environmental Impact</h3>
