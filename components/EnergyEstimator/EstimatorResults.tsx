@@ -8,6 +8,8 @@ interface EstimatorResultsProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   handleReset: () => void;
+  openModal: boolean;
+  setOpenModal: (openModal: boolean) => void
 }
 
 const EstimatorResults: React.FC<EstimatorResultsProps> = ({
@@ -15,6 +17,8 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
   open,
   setOpen,
   handleReset,
+  openModal,
+  setOpenModal
 }) => {
   return (
     <div className="">
@@ -27,7 +31,7 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-normal text-green-500">Results</h2>
             <div
-              data-testid = 'toggle_button'
+              data-testid="toggle_button"
               onClick={() => setOpen(!open)}
               className="border p-2 rounded-full"
             >
@@ -45,6 +49,15 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
             Recommended Inverter Size:{" "}
             <strong>{results?.inverterSize} kW</strong>
           </p>
+          {/* <div className="bg-gray-100 p-3 rounded lg:w-[500px]">
+            <h3 className="text-lg font-semibold">Your need</h3>
+            <p>
+              Base on your selected appliances and duration of use, you will
+              need to get an Inverter Size of{" "}
+              <strong>{results?.inverterSize} kW</strong> and a recommended
+              solar panel size of <strong>{results.panelSize} kW</strong>
+            </p>
+          </div> */}
           <div className="bg-gray-100 p-3 rounded lg:w-[500px]">
             <h3 className="text-lg font-semibold">Environmental Impact</h3>
             <p>
@@ -53,8 +66,8 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               <strong>{results.environmentalImpact} kg/year</strong>
             </p>
           </div>
-          <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 mr-6">
-            Download Report
+          <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 mr-6" onClick={() => setOpenModal(!openModal)}>
+            Get Recommendations
           </button>
           <button
             onClick={handleReset}

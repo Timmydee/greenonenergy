@@ -14,12 +14,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation (Visible on Medium Screens and Above) */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-green-600 transition duration-300">
+            {/* <a href="#" className="text-gray-700 hover:text-green-600 transition duration-300">
               Home
             </a>
             <a href="/Blog" className="text-gray-700 hover:text-green-600 transition duration-300">
               Blog
-            </a>
+            </a> */}
             <a
               href="/"
               className="bg-green-600 text-white px-6 py-2 rounded-md shadow-lg hover:bg-green-700 transition duration-300"

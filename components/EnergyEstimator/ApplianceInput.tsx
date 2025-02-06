@@ -24,7 +24,7 @@ const ApplianceInput: React.FC<ApplianceInputProps> = ({ appliances, selectedApp
         {appliances.map((appliance) => (
           <div
             key={appliance.name}
-            className="grid grid-cols-4 gap-4 items-center py-3"
+            className="grid grid-cols-4 gap-4 items-center py-3 md:px-0 px-2"
           >
             <span
               className={`flex items-center gap-2 border-b cursor-pointer transition duration-200 font-normal text-gray-800 md:text-base text-sm ${selectedAppliances.includes(appliance.name)
