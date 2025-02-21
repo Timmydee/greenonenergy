@@ -60,7 +60,7 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               onClick={handleReset}
               className="mt-4 font-bold text-[#007B23]"
             >
-              Reset Selections >>>
+              {`Reset Selections >>>`}
             </button>
             {/* <div className="bg-gray-100 p-3 rounded lg:w-[500px]">
           <h3 className="text-lg font-semibold">Your need</h3>
