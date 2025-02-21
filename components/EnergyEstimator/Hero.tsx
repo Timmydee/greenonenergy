@@ -1,15 +1,27 @@
 import React from "react";
+import Image from 'next/image'
+
 
 const Hero = () => {
   return (
-    <section className="pt-8">
-      <div className="max-w-5xl mx-auto px-4 py-8 text-center">
-        <h2 className="text-3xl font-bold mb-4 text-green-600">
+    <section className="relative">
+      <div className="max-w-8xl mx-auto px-4 py-8 text-center">
+        <div className="flex justify-center items-center bg-[#FAFAFA] rounded-lg p-2 max-w-[476px] mx-auto ">
+          <Image src='/AI.webp' width={20} height={20} alt="Inverter" />
+          <p className="p2">Power Calculator to get your solar Inverter recommendation</p>
+        </div>
+        <h2 className="h1">
           Estimate Your Energy Needs in Minutes!
         </h2>
-        <p className="text-black mb-6">
+        <p className="mb-6 p1">
         Select your usage preferences to get personalized recommendations for solar panels, inverters, and more.
         </p>
+      </div>
+      <div className="absolute top-0 left-20">
+        <Image src='/star1.webp' alt="inverter_star" width={52} height={52} />
+      </div>
+      <div className="absolute top-16 right-20">
+        <Image src='/star2.webp' alt="inverter_star" width={52} height={52} />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Gelasio, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/global/Navbar";
 import { Analytics } from '@vercel/analytics/next';
@@ -10,10 +10,16 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
+const gelasio = Gelasio({
+  variable: "--font-gelasio",
+  subsets: ['latin']
+})
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ["latin"]
+})
 
 export const metadata: Metadata = {
   title: "Green On Energy",
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${gelasio.variable} ${geistSans.variable} ${inter.variable} antialiased`}
       >
         <Navbar />
         {children}

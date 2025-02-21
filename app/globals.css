@@ -17,7 +17,39 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  /* font-family: Arial, Helvetica, sans-serif; */
-  /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: var(--font-gelasio);
+}
+
+.p3{
+  color: #808080;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 18px;
+}
+.p2{
+  color: #707070;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.p1{
+  color: #999999;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.h1{
+  color: #074335;
+  font-family: var(--font-geistSans);
+  font-weight: 600;
+  font-size: 50px;
+}
+.h3{
+  color: #292D32;
+  font-family: var(--font-geistSans);
+  font-weight: 500;
+  font-size: 20px;
 }

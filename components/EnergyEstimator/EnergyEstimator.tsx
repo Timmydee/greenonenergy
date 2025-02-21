@@ -111,9 +111,9 @@ const EnergyEstimator = () => {
   };
 
   return (
-    <div className=" w-full relative">
+    <div className=" w-full relativ">
       <div className="md:w-[94%] w-[98%] mx-auto flex flex-col lg:flex-row justify-between items-start">
-        <div className="lg:w-[55%] w-full md:p-6 p-2 bg-white shadow-md rounded-lg lg:mb-4">
+        <div className="lg:w-[60%] w-full md:p-6 p-2 bg-white shadow-md rounded-lg lg:mb-4">
           <ApplianceInput
             appliances={appliances}
             selectedAppliances={selectedAppliances}
@@ -123,7 +123,7 @@ const EnergyEstimator = () => {
         </div>
 
         {/* Results */}
-        <div className="lg:w-[43%] w-full shadow-md">
+        <div className="lg:w-[38%] w-full shadow-md">
           <EstimatorResults
             results={results}
             open={open}

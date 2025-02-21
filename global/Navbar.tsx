@@ -6,13 +6,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    // <header className="">
+    <header className="sticky top-0 z-50 bg-[#F5F7F7] lg:pt-4">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-sm rounded-2xl">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <h1 className="text-2xl font-bold text-green-600">Green On Energy</h1>
+          <h1 className="text-2xl font-bold text-[#089E5F]">GreenOnEnergy</h1>
 
-          {/* Desktop Navigation (Visible on Medium Screens and Above) */}
           <nav className="hidden md:flex items-center space-x-8">
             {/* <a href="#" className="text-gray-700 hover:text-green-600 transition duration-300">
               Home
@@ -28,7 +27,6 @@ const Navbar = () => {
             </a>
           </nav>
 
-          {/* Mobile Menu Button (Visible on Small Screens Only) */}
           <button
             className="md:hidden p-2 text-gray-700 hover:text-green-600 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -37,7 +35,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Dropdown Menu (Visible on Small Screens Only) */}
         {isOpen && (
           <div className="md:hidden bg-white border-t border-gray-200">
             <div className="px-4 pt-4 pb-6 space-y-4">
