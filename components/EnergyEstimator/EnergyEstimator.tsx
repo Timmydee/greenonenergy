@@ -137,7 +137,7 @@ const EnergyEstimator = () => {
 
       {openModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-3xl shadow-lg w-full max-w-xl relative">
+          <div className="bg-white p-6 rounded-3xl shadow-lg md:w-full w-[90%] mx-auto md:max-w-xl relative">
             <RecommendationForm results={results} setOpenModal={setOpenModal} />            
           </div>
         </div>

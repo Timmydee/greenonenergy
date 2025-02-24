@@ -67,7 +67,7 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
   };
 
   return (
-    <main className="md:max-w-2xl mx-auto w-[90%] px-4 py-4">
+    <main className="md:max-w-2xl px-4 py-4">
       {isSuccess ?
         <div>
           <div className="flex justify-center items-center space-x-2 bg-[#FAFAFA] rounded-2xl p-2 max-w-[136px] mx-auto ">
@@ -79,7 +79,7 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
           </div>
           <div className="flex flex-col justify-center items-center mt-8">
             <p className="p2">Get full detailed result summary on your Email</p>
-            <Button text='Return to Website' type="button" />
+            {/* <Button text='Return to Website' type="button" /> */}
           </div>
         </div> :
         <div>
@@ -161,7 +161,7 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
           </form>
         </div>
       }
-      <div onClick={() => setOpenModal(false)} className="w-8 h-8 flex items-center justify-center font-bold text-[#074335] border border-[#074335] cursor-pointer rounded-full absolute top-6 right-6">
+      <div onClick={() => setOpenModal(false)} className="w-8 h-8 flex items-center justify-center font-bold text-[#074335] border border-[#074335] cursor-pointer rounded-full absolute md:top-6 md:right-6 top-3 right-3">
         <MdClose size={24} />
       </div>
     </main>

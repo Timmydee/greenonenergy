@@ -17,10 +17,10 @@ const Hero = () => {
         Select your usage preferences to get personalized recommendations for solar panels, inverters, and more.
         </p>
       </div>
-      <div className="absolute top-0 left-20 md:block hidden">
+      <div className="absolute lg:top-0 lg:left-20 md:top-4 md:left-12 md:block hidden">
         <Image src='/star3.png' alt="inverter_star" width={52} height={52} />
       </div>
-      <div className="absolute top-16 right-20 md:block hidden">
+      <div className="absolute lg:top-16 lg:right-20 md:top-12 md:right-16 md:block hidden">
         <Image src='/star4.png' alt="inverter_star" width={52} height={52} />
       </div>
     </section>
