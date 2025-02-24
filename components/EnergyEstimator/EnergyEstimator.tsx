@@ -111,8 +111,8 @@ const EnergyEstimator = () => {
   };
 
   return (
-    <div className=" w-full relativ">
-      <div className="md:w-[94%] w-[98%] mx-auto flex flex-col lg:flex-row justify-between items-start">
+    <div className="w-full relativ lg:pb-0 pb-8">
+      <div className="md:w-[94%] w-[98%] mx-auto flex flex-col lg:flex-row justify-between items-start lg:space-y-0 space-y-8">
         <div className="lg:w-[60%] w-full md:p-6 p-2 bg-white shadow-md rounded-lg lg:mb-4">
           <ApplianceInput
             appliances={appliances}
