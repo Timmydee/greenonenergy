@@ -137,14 +137,8 @@ const EnergyEstimator = () => {
 
       {openModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <RecommendationForm results={results} />
-            <button
-              onClick={() => setOpenModal(false)}
-              className="mt-4 w-[100px] mx-auto flex justify-center bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-200"
-            >
-              Close
-            </button>
+          <div className="bg-white p-6 rounded-3xl shadow-lg w-full max-w-xl relative">
+            <RecommendationForm results={results} setOpenModal={setOpenModal} />            
           </div>
         </div>
       )}

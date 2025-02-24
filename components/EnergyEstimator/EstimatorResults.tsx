@@ -42,6 +42,7 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               {open ? <BsArrowUp size={20} /> : <BiDownArrow size={20} />}
             </div> */}
         </div>
+        
         {results?.totalEnergy > 0 ? (
           <div className="mt-8">
             <p className="p2">
