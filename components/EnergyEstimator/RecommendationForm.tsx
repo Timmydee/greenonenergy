@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../ReuseableComponent/Button";
 
 interface RecommendationFormProps {
   results: {
@@ -140,12 +141,7 @@ const RecommendationForm = ({ results }: RecommendationFormProps) => {
           />
         </div>
         <div>
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200"
-          >
-            Get Recommendations
-          </button>
+          <Button text='Get Recommendations'/>
         </div>
       </form>
     </main>

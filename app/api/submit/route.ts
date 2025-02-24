@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: any) {
   try {
-    const { name, email, phone, energyUsage, inverterSize } = await req.json();
+    const { name, email, phone, energyUsage, inverterSize, panelSize } = await req.json();
 
     const auth = new google.auth.GoogleAuth({
       credentials: {
@@ -20,7 +20,7 @@ export async function POST(req: any) {
       range: "Sheet2!A:E",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[name, email, phone, energyUsage, inverterSize]],
+        values: [[name, email, phone, energyUsage, inverterSize, panelSize]],
       },
     });
 

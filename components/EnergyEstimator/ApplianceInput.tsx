@@ -32,7 +32,7 @@ const ApplianceInput: React.FC<ApplianceInputProps> = ({ appliances, selectedApp
             <span
               className={`flex items-center space-x-3 col-span-2 pl-4`}
             >
-              <input type="checkbox" className="w-5 h-5 accent-green-500" onClick={() => handleToggleAppliance(appliance.name)}/>
+              <input type="checkbox" className="w-5 h-5 accent-green-500" checked={selectedAppliances.includes(appliance.name)} onChange={() => handleToggleAppliance(appliance.name)}/>
               <span className="text-xl text-[#292D32]">{appliance.icon}</span>
               <span className="text-[#292D32] text-base font-normal">
                 {appliance.name} <span className="text-[#07433570]">({appliance.wattage}W)</span>
