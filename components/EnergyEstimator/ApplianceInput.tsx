@@ -14,8 +14,8 @@ const ApplianceInput: React.FC<ApplianceInputProps> = ({ appliances, selectedApp
         Select Your Appliances
         </h5>
         <p className="p2">Choose  your appliance inside your home</p>
-        <div className="grid grid-cols-5 md:font-normal font-light items-end border-b pb-2 text-[#808080] md:text-base text-sm mt-4">
-          <span className="justify-self-start col-span-2">Appliances</span>
+        <div className="grid md:grid-cols-5 grid-cols-4 md:font-normal font-light items-end border-b pb-2 text-[#808080] md:text-base text-sm mt-4">
+          <span className="justify-self-start md:col-span-2">Appliances</span>
           <span className="justify-self-center">Quantity</span>
           <span className="justify-self-center">Wattage (W)</span>
           <span className="justify-self-center">Hours Used</span>
@@ -24,13 +24,13 @@ const ApplianceInput: React.FC<ApplianceInputProps> = ({ appliances, selectedApp
         {appliances.map((appliance) => (
           <div
             key={appliance.name}
-            className={`grid grid-cols-5 gap-4 items-center py-3 md:px-0 px-2 cursor-pointer transition duration-200 font-normal text-gray-800 md:text-base text-sm border border-b-[#0743350F] ${selectedAppliances.includes(appliance.name)
+            className={`grid md:grid-cols-5 gap-4 items-center py-3 md:px-0 px-2 cursor-pointer transition duration-200 font-normal text-gray-800 md:text-base text-sm border border-b-[#0743350F] ${selectedAppliances.includes(appliance.name)
               ? "bg-[#07433529] shadow-sm p-2 rounded-md"
               : "hover:bg-gray-50 p-2 border-transparent"
             }`}
           >
             <span
-              className={`flex items-center space-x-3 col-span-2 pl-4`}
+              className={`flex items-center space-x-3 col-span-2 md:pl-4`}
             >
               <input type="checkbox" className="w-5 h-5 accent-green-500" checked={selectedAppliances.includes(appliance.name)} onChange={() => handleToggleAppliance(appliance.name)}/>
               <span className="text-xl text-[#292D32]">{appliance.icon}</span>

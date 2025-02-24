@@ -81,3 +81,16 @@ body {
   padding: 0 8px;
   font-size: 13px;
 }
+
+
+@media (max-width: 768px) {
+  .h1{
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 450px) {
+  .h1{
+    font-size: 34;
+  }
+}
