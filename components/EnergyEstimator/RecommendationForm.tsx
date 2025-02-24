@@ -82,7 +82,7 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
             {/* <Button text='Return to Website' type="button" /> */}
           </div>
         </div> :
-        <div>
+        <div className="overflow-x-hidden">
           <div className="text-center mb-10">
             <h5 className="h2">Recommendation Results</h5>
             <p className="p2">Get full detailed result summary on your Email</p>
