@@ -7,6 +7,19 @@ import ApplianceInput from "./ApplianceInput";
 import EstimatorResults from "./EstimatorResults";
 import RecommendationForm from "./RecommendationForm";
 
+const compareInverter = [
+  { max: 800, size: "800VA" },
+  { min: 800, max: 1200, size: "1KVA" },
+  { min: 1200, max: 1600, size: "1.5KVA" },
+  { min: 1600, max: 2400, size: "2KVA" },
+  { min: 2400, max: 3000, size: "3KVA" },
+  { min: 3000, max: 5000, size: "5KVA" },
+  { min: 5000, max: 7000, size: "7.5KVA" },
+  { min: 7000, max: 10000, size: "10KVA" },
+  { min: 10000, max: 15000, size: "15KVA" },
+  { min: 15000, size: "20KVA+" }
+];
+
 const EnergyEstimator = () => {
   const [selectedAppliances, setSelectedAppliances] = useState<string[]>([]);
   const [appliances, setAppliances] = useState<Appliance[]>(applianceData);
@@ -17,6 +30,7 @@ const EnergyEstimator = () => {
     panelSize: 0,
     noOfPanels: 0,
     inverterSize: 0,
+    totalLoad: 0,
     environmentalImpact: 0,
   });
 
@@ -33,10 +47,10 @@ const EnergyEstimator = () => {
         prevAppliances.map((appliance) =>
           appliance.name === name
             ? {
-                ...appliance,
-                hours: isAlreadySelected ? 0 : appliance.hours,
-                quantity: isAlreadySelected ? 1 : appliance.quantity,
-              }
+              ...appliance,
+              hours: isAlreadySelected ? 0 : appliance.hours,
+              quantity: isAlreadySelected ? 1 : appliance.quantity,
+            }
             : appliance
         )
       );
@@ -55,9 +69,9 @@ const EnergyEstimator = () => {
       prevAppliances.map((appliance) =>
         appliance.name === name
           ? {
-              ...appliance,
-              [field]: Math.max(0, Number(appliance[field]) + increment),
-            }
+            ...appliance,
+            [field]: Math.max(0, Number(appliance[field]) + increment),
+          }
           : appliance
       )
     );
@@ -67,33 +81,38 @@ const EnergyEstimator = () => {
     const totalEnergy = selectedAppliances.reduce((total, name) => {
       const appliance = appliances.find((a) => a.name === name);
       return appliance
-        ? total +
-            (Number(appliance?.wattage) *
-              appliance.hours *
-              appliance.quantity) /
-              1000
+        ? total + (Number(appliance?.wattage) * appliance.quantity * appliance.hours) / 1000
         : total;
     }, 0);
 
+    const totalLoadVA = selectedAppliances.reduce((total, name) => {
+      const appliance = appliances.find((a) => a.name === name);
+      return appliance ? total + (Number(appliance?.wattage) * appliance.quantity) : total;
+    }, 0)
+  
     const sunlightHours = 5;
-    const onePanel = 0.4;
-    const panelSize = (totalEnergy / sunlightHours).toFixed(2);
-    const noOfPanels = Math.ceil(Number(panelSize) / onePanel);
-
-    const inverterSize = selectedAppliances
-      .reduce((sum, name) => {
-        const appliance = appliances.find((a) => a.name === name);
-        return appliance
-          ? sum + (Number(appliance.wattage) * appliance.quantity) / 1000
-          : sum;
-      }, 0)
-      .toFixed(2);
+    const onePanel = 0.4; // 400W panel = 0.4kW
+  
+    // Calculate Panel Size (kW)
+    const panelSize = Number((totalEnergy / sunlightHours).toFixed(2));
+  
+    // Calculate Number of Panels Required
+    const noOfPanels = Math.ceil(panelSize / onePanel);
+  
+    const inverterSize = compareInverter.find(({ min, max }) => 
+      (min ? totalLoadVA >= min : true) && (max ? totalLoadVA < max : true)
+    )?.size || "Unknown";
+  
+    // Calculate Environmental Impact (CO2 savings)
+    const environmentalImpact = Number((totalEnergy * 0.85).toFixed(2));
+  
 
     setResults({
       totalEnergy,
       panelSize: Number(panelSize),
       noOfPanels,
-      inverterSize: Number(inverterSize),
+      inverterSize: inverterSize,
+      totalLoad: totalLoadVA,
       environmentalImpact: Number((totalEnergy * 0.85).toFixed(2)),
     });
   };
@@ -106,6 +125,7 @@ const EnergyEstimator = () => {
       panelSize: 0,
       noOfPanels: 0,
       inverterSize: 0,
+      totalLoad: 0,
       environmentalImpact: 0,
     });
   };
@@ -138,7 +158,7 @@ const EnergyEstimator = () => {
       {openModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-3xl shadow-lg md:w-full w-[90%] mx-auto md:max-w-xl relative">
-            <RecommendationForm results={results} setOpenModal={setOpenModal} />            
+            <RecommendationForm results={results} setOpenModal={setOpenModal} />
           </div>
         </div>
       )}

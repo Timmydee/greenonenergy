@@ -10,6 +10,7 @@ export interface Results {
     totalEnergy: number;
     panelSize: number;
     noOfPanels: number;
-    inverterSize: number;
+    inverterSize: any;
+    totalLoad: number;
     environmentalImpact: number;
   }
