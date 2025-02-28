@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { BiDownArrow } from "react-icons/bi";
 import { BsArrowUp } from "react-icons/bs";
+import InfoTooltip from "../ReuseableComponent/InfoToolTip";
 
 interface EstimatorResultsProps {
   results: Results;
@@ -42,26 +43,69 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               {open ? <BsArrowUp size={20} /> : <BiDownArrow size={20} />}
             </div> */}
         </div>
-
         {results?.totalEnergy > 0 ? (
           <div className="mt-8">
-            <p className="p2">
-              Total Energy Usage:{" "}
-              <strong className="text-[#292D32] font-bold">{results?.totalEnergy.toFixed(2)} kWh/day</strong>
-            </p>
-            <p className="p2">
-              Total Load: <strong className="text-[#292D32] font-bold">{results.totalLoad} VA</strong>
-            </p>
-            <p className="p2">
-              Recommended Inverter Size:{" "}
-              <strong className="text-[#292D32] font-bold">{results?.inverterSize}</strong>
-            </p>
-            <p className="p2">
-              Recommended Panel Size: <strong className="text-[#292D32] font-bold">{results.panelSize} kW</strong>
-            </p>
-            <p className="p2">
-              Recommended Panel Number: <strong className="text-[#292D32] font-bold">{results.noOfPanels} × 400W panel(s)</strong>
-            </p>
+            <div className="flex items-center gap-[2px]">
+              <InfoTooltip
+                label="Total Energy Usage"
+                infoMessage="This is the total amount of electricity you consume daily, measured in kilowatt-hours (kWh). It helps determine your solar and battery needs"
+              />
+              <p className="p2">
+                Total Energy Usage:{" "}
+                <strong className="text-[#292D32] font-bold">
+                  {results?.totalEnergy.toFixed(2)} kWh/day
+                </strong>
+              </p>
+            </div>
+            <div className="flex items-center gap-[2px]">
+              <InfoTooltip
+                label="Total Load"
+                infoMessage="This represents the total power demand of your appliances at any given moment, measured in Volt-Amperes (VA). It helps size the right inverter.."
+              />
+              <p className="p2">
+                Total Load:{" "}
+                <strong className="text-[#292D32] font-bold">
+                  {results.totalLoad} VA
+                </strong>
+              </p>
+            </div>
+
+            <div className="flex items-center gap-[2px]">
+              <InfoTooltip
+                label="Recommended Inverter Size"
+                infoMessage="Your inverter must handle the total load. This recommended size ensures your appliances can run efficiently without overloading."
+              />
+              <p className="p2">
+                Recommended Inverter Size:{" "}
+                <strong className="text-[#292D32] font-bold">
+                  {results?.inverterSize}
+                </strong>
+              </p>
+            </div>
+            <div className="flex items-center gap-[2px]">
+              <InfoTooltip
+                label="Recommended Panel Size"
+                infoMessage="This is the total solar capacity needed to generate enough electricity for your daily usage, based on available sunlight hours."
+              />
+              <p className="p2">
+                Recommended Panel Size:{" "}
+                <strong className="text-[#292D32] font-bold">
+                  {results.panelSize} kW
+                </strong>
+              </p>
+            </div>
+            <div className="flex items-center gap-[2px]">
+              <InfoTooltip
+                label="Recommended Panel Number"
+                infoMessage="This is the number of solar panels required to meet your energy needs, assuming each panel has a standard capacity of 400W."
+              />
+              <p className="p2">
+                Recommended Panel Number:{" "}
+                <strong className="text-[#292D32] font-bold">
+                  {results.noOfPanels} × 400W panel(s)
+                </strong>
+              </p>
+            </div>
 
             <button
               onClick={handleReset}
@@ -69,21 +113,14 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
             >
               {`Reset Selections >>>`}
             </button>
-            {/* <div className="bg-gray-100 p-3 rounded lg:w-[500px]">
-          <h3 className="text-lg font-semibold">Your need</h3>
-          <p>
-            Base on your selected appliances and duration of use, you will
-            need to get an Inverter Size of{" "}
-            <strong>{results?.inverterSize} kW</strong> and a recommended
-            solar panel size of <strong>{results.panelSize} kW</strong>
-          </p>
-          </div> */}
             <div className="bg-gray-100 p-3 rounded mt-10">
               <h5 className="h3">Environmental Impact</h5>
               <p className="p2">
                 By using renewable energy, you could reduce CO2 emissions by
                 approximately:{" "}
-                <strong className="text-[#292D32] font-bold">{results.environmentalImpact} kg/year</strong>
+                <strong className="text-[#292D32] font-bold">
+                  {results.environmentalImpact} kg/year
+                </strong>
               </p>
             </div>
             <button
@@ -101,7 +138,9 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               width={250}
               height={250}
             />
-            <p className='p1 text-center mt-4'>Select some appliances to get Inverter Recommendations</p>
+            <p className="p1 text-center mt-4">
+              Select some appliances to get Inverter Recommendations
+            </p>
           </div>
         )}{" "}
       </div>
