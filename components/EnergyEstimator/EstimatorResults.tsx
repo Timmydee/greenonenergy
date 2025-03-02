@@ -32,8 +32,8 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
       <div className="bg-white p-2 lg:py-6 py-2 space-y-4 text-black border w-full md:p-6 shadow-lg rounded-lg">
         <div className="flex justify-between items-center">
           <div className="">
-            <h5 className="h3">Results</h5>
-            <p className="p2">Estimates your energy consumption.</p>
+            <h5 className="h3">⚡ Your Energy Report</h5>
+            <p className="p2">Based on your input, here’s what you need to switch to solar</p>
           </div>
           {/* <div
               data-testid="toggle_button"
