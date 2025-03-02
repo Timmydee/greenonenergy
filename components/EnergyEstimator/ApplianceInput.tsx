@@ -11,9 +11,9 @@ const ApplianceInput: React.FC<ApplianceInputProps> = ({ appliances, selectedApp
     <div>
       <div >
         <h5 className="h3">
-        Select Your Appliances
+        🖥️ Select Your Appliances
         </h5>
-        <p className="p2">Choose  your appliance inside your home</p>
+        <p className="p2">Choose the appliances you use at home to calculate your total energy consumption and get the best Inverter and solar recommendation.</p>
         <div className="grid grid-cols-5 md:font-normal font-light items-end border-b pb-2 text-[#808080] md:text-base text-[14px] mt-4">
           <span className="justify-self-start col-span-2">Appliances</span>
           <span className="justify-self-center">Quantity</span>
