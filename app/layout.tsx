@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/global/Navbar";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // Import from React Query
+import QueryClientWrapper from "@/lib/queryClient/QueryClientWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +28,8 @@ export const metadata: Metadata = {
   description: "Solar Inverter Estimator",
 };
 
+const queryClient = new QueryClient();
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,8 +40,13 @@ export default function RootLayout({
       <body
         className={`${gelasio.variable} ${geistSans.variable} ${inter.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        {/* <QueryClientProvider client={queryClient}>
+          <Navbar />
+          {children}
+        </QueryClientProvider> */}
+        <QueryClientWrapper>
+          {children}
+        </QueryClientWrapper>
         <Analytics />
         <SpeedInsights />
       </body>
