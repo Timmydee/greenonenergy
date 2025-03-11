@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Gelasio, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/global/Navbar";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // Import from React Query
-import QueryClientWrapper from "@/lib/queryClient/QueryClientWrapper";
+import QueryClientWrapper from "@/lib/AppWrapper/AppWrapper";
+import AppWrapper from "@/lib/AppWrapper/AppWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +27,6 @@ export const metadata: Metadata = {
   description: "Solar Inverter Estimator",
 };
 
-const queryClient = new QueryClient();
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,13 +37,9 @@ export default function RootLayout({
       <body
         className={`${gelasio.variable} ${geistSans.variable} ${inter.variable} antialiased`}
       >
-        {/* <QueryClientProvider client={queryClient}>
-          <Navbar />
+        <AppWrapper>
           {children}
-        </QueryClientProvider> */}
-        <QueryClientWrapper>
-          {children}
-        </QueryClientWrapper>
+        </AppWrapper>
         <Analytics />
         <SpeedInsights />
       </body>

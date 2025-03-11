@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IProduct extends Document {
-  vendorId: Types.ObjectId; // ✅ Corrected Type
+  vendorId: Types.ObjectId;
   name: string;
   description: string;
   price: number;
@@ -10,7 +10,7 @@ export interface IProduct extends Document {
 }
 
 const ProductSchema = new Schema<IProduct>({
-  vendorId: { type: Schema.Types.ObjectId, ref: "Vendor", required: true }, // ✅ Matches the interface
+  vendorId: { type: Schema.Types.ObjectId, ref: "Vendor", required: true },
   name: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },

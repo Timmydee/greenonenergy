@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/dbConnect";
-import { verifyVendor } from "@/lib/VerifyVendor/auth";
+import { verifyVendor } from "@/lib/verifyVendor/auth";
 
 export async function GET(req: Request) {
   try {

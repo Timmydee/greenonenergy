@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Vendor from "@/models/Vendor";
 import { connectToDatabase } from "@/lib/dbConnect";
-import { verifyAdmin } from "@/lib/VerifyAdmin/auth";
+import { verifyAdmin } from "@/lib/verifyAdmin/auth";
 
 export async function DELETE(req: Request) {
   try {
