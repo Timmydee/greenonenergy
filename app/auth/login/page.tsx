@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import LogoHeader from '@/global/LogoHeader'
 
 const loginSchema = z.object({
     email: z.string().email("Invalid Email"),
@@ -44,9 +45,10 @@ const LoginPage = () => {
         }
     })
     return (
-        <div className='flex min-h-screen justify-center items-center'>
-            <Card className='w-[400px] shadow-lg'>
-                <CardHeader>
+        <div className='flex flex-col min-h-screen justify-center items-center'>
+            <LogoHeader />
+            <Card className='w-[400px] shadow-lg mt-4'>
+                <CardHeader className='justify-self-center'>
                     <CardTitle>Login</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -73,6 +75,11 @@ const LoginPage = () => {
                     </form>
                 </CardContent>
             </Card>
+
+            <div className='mt-4'>
+                <p>Don't have an account? <a className='text-blue-500' href='/auth/registervendor'>Register as a vendor</a></p>
+                {/* <p>Don't have an account? <a href='/auth/register'>Register as a user</a></p> */}
+            </div>
         </div>
     )
 }
