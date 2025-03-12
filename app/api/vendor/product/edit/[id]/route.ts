@@ -1,6 +1,4 @@
-// app/api/vendor/product/edit/[id]/route.ts
-
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/dbConnect";
 import { verifyVendor } from "@/lib/verifyVendor/auth";
@@ -10,19 +8,21 @@ export const config = {
   runtime: "nodejs",
 };
 
-interface RouteContext {
-  params: { id: string };
-}
-
-export async function PUT(req: Request, context: RouteContext) {
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   try {
     await connectToDatabase();
-    const id = context.params?.id;
+    const id: string = context.params?.id;
+
     if (!id) {
       return NextResponse.json({ message: "Invalid product ID" }, { status: 400 });
     }
 
     const { name, description, price, category, imageUrls } = await req.json();
+
+    // Validate required fields
+    if (!name || !description || !price || !category) {
+      return NextResponse.json({ message: "All fields are required" }, { status: 400 });
+    }
 
     // Verify vendor authentication
     const vendorId = verifyVendor(req);
@@ -47,11 +47,11 @@ export async function PUT(req: Request, context: RouteContext) {
     }
 
     // Update the product
-    product.name = name || product.name;
-    product.description = description || product.description;
-    product.price = price || product.price;
-    product.category = category || product.category;
-    product.imageUrls = imageUrls || product.imageUrls;
+    product.name = name ?? product.name;
+    product.description = description ?? product.description;
+    product.price = price ?? product.price;
+    product.category = category ?? product.category;
+    product.imageUrls = imageUrls ?? product.imageUrls;
 
     await product.save();
 
