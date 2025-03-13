@@ -14,7 +14,7 @@ import { toast } from "react-hot-toast";
 import LogoHeader from "@/global/LogoHeader";
 
 const registerSchema = z.object({
-  companyName: z.string().min(2, "Company name is required"),
+  name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   phone: z.string().optional(),
@@ -34,10 +34,10 @@ export default function RegisterPage() {
 
   const mutation = useMutation({
     mutationFn: async (data: RegisterFormData) => {
-      return await axios.post("/api/auth/registervendor", data);
+      return await axios.post("/api/auth/registerclient", data);
     },
     onSuccess: () => {
-      toast.success("Registration successful! Await admin approval.");
+      toast.success("Registration successful!");
       router.push("/auth/login");
     },
     onError: () => {
@@ -51,17 +51,15 @@ export default function RegisterPage() {
 
       <Card className="w-[400px] shadow-lg mt-6">
         <CardHeader>
-          <CardTitle className="flex mx-auto">Register as a vendor</CardTitle>
+          <CardTitle className="flex mx-auto">Register as a User</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit((data) => mutation.mutate(data))}>
             <div className="mb-4">
-              <Label htmlFor="companyName">Company Name</Label>
-              <Input id="companyName" {...register("companyName")} />
-              {errors.companyName && (
-                <p className="text-red-500 text-sm">
-                  {errors.companyName.message}
-                </p>
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" {...register("name")} />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
               )}
             </div>
             <div className="mb-4">

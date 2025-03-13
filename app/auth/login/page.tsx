@@ -78,6 +78,7 @@ const LoginPage = () => {
 
             <div className='mt-4'>
                 <p>Don't have an account? <a className='text-blue-500' href='/auth/registervendor'>Register as a vendor</a></p>
+                <p>Forgot your password? <a className='text-blue-500' href='/auth/forgotpassword'>Reset Password</a></p>
                 {/* <p>Don't have an account? <a href='/auth/register'>Register as a user</a></p> */}
             </div>
         </div>

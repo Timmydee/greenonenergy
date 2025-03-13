@@ -8,7 +8,12 @@ interface User extends Document {
   companyName?: string;  // Only for vendors
   address?: string;      // Only for vendors
   phone: string;
-  isApproved: boolean;
+  isApproved?: boolean;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
+  isVerified: boolean;
+  verificationToken?: string;
+
 }
 
 const userSchema = new Schema<User>({
@@ -20,9 +25,13 @@ const userSchema = new Schema<User>({
   address: { type: String },
   phone: { type: String, required: true },
   isApproved: { type: Boolean, default: false },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
+  isVerified: { type: Boolean, default: false },
+  verificationToken: { type: String },
+}, { timestamps: true
 });
 
-// const UserModel = mongoose.model<User>("User", userSchema);
 const UserModel = mongoose.models.User || mongoose.model<User>("User", userSchema);
 
 
