@@ -46,5 +46,5 @@ export function middleware(req: NextRequest) {
 
 // Apply middleware only to protected API routes
 export const config = {
-  matcher: ["/api/admin/:path*", "/api/vendor/:path*"], // Add protected routes
+  matcher: ["/api/admin/:path*", "/api/vendor/:path*"], 
 };
