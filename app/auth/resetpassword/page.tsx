@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import toast from "react-hot-toast";
 import LogoHeader from "@/global/LogoHeader";
+import { Suspense } from "react";
+
+export const dynamic = "force-dynamic";
+
 
 const resetPasswordSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -17,7 +21,7 @@ const resetPasswordSchema = z.object({
 
 type ResetPasswordData = z.infer<typeof resetPasswordSchema>;
 
-export default function ResetPassword() {
+function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
@@ -76,5 +80,13 @@ export default function ResetPassword() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function ResetPassword() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordForm /> 
+    </Suspense>
   );
 }
