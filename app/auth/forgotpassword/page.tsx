@@ -10,7 +10,7 @@ import { z } from "zod";
 import { toast } from "react-hot-toast";
 import LogoHeader from "@/global/LogoHeader";
 
-export const forgotPasswordSchema = z.object({
+const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email"),
 });
 
