@@ -11,7 +11,7 @@ import { z } from "zod";
 import toast from "react-hot-toast";
 import LogoHeader from "@/global/LogoHeader";
 
-export const resetPasswordSchema = z.object({
+const resetPasswordSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
