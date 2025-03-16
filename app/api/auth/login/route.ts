@@ -18,6 +18,10 @@ export async function POST(req: Request) {
       );
     }
 
+    // if(!user.isVerified) {
+    //   return NextResponse.json( { message: "Please verify your email first" }, { status: 401 });
+    // } 
+
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -44,10 +48,10 @@ export async function POST(req: Request) {
       name: "authToken",
       value: token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Secure in production
+      secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      path: "/", // Available for all routes
-      maxAge: 60 * 60 * 24, // 1 day in seconds
+      path: "/",
+      maxAge: 60 * 60 * 24,
     });
 
     return response;

@@ -36,8 +36,8 @@ export default function RegisterPage() {
     mutationFn: async (data: RegisterFormData) => {
       return await axios.post("/api/auth/registervendor", data);
     },
-    onSuccess: () => {
-      toast.success("Registration successful! Await admin approval.");
+    onSuccess: (response) => {
+      toast.success(response.data.message || "Registered Successfully. Please verify your email.");
       router.push("/auth/login");
     },
     onError: () => {

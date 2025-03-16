@@ -46,7 +46,7 @@ async function sendResetEmail(email: string, resetUrl: string) {
   });
 
   await transporter.sendMail({
-    from: `"Your App" <${process.env.EMAIL_USER}>`,
+    from: `"GreenOn Energy" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Password Reset Request",
     html: `<p>Click <a href="${resetUrl}">here</a> to reset your password.</p>`,
