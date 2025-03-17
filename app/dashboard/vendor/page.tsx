@@ -1,9 +1,17 @@
-import React from 'react'
+'use client'
+import { useAuth } from '@/hooks/useAuth';
+import React, { useEffect } from 'react'
 
-const VendorDashboard = () => {
-  return (
-    <div>VendorDashboard</div>
-  )
+
+const Vendor = () => {
+  const { user, fetchSession } = useAuth();
+  useEffect(() => {
+    fetchSession(); 
+  },[])
+
+  if(user?.role !== "vendor") {
+    return <div>Unauthorized</div>
+  }
 }
 
-export default VendorDashboard
+export default Vendor

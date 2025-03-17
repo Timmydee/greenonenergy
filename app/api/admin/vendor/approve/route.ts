@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import Vendor from "@/models/Vendor";
 import { connectToDatabase } from "@/lib/dbConnect";
 // import { verifyAdmin } from "@/lib/verifyAdmin/auth";
 import UserModel from "@/models/User";

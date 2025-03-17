@@ -59,17 +59,3 @@ export default function VendorDashboardLayout({ children }: { children: React.Re
     </div>
   );
 }
-
-
-// import Sidebar from '@/components/VendorDashboard/SideBar'
-// import React from 'react'
-
-// const Layout = () => {
-//   return (
-//     <div>
-//         <Sidebar />
-//     </div>
-//   )
-// }
-
-// export default Layout
