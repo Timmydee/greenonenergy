@@ -8,7 +8,7 @@ export async function GET(req: Request) {
     await connectToDatabase();
 
     // Verify vendor authentication
-    const vendorId = verifyVendor(req);
+    const vendorId = await verifyVendor(req);
     if (!vendorId) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
     }

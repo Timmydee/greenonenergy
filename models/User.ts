@@ -8,6 +8,8 @@ interface User extends Document {
   companyName?: string;  // Only for vendors
   address?: string;      // Only for vendors
   phone?: string;
+  whatsapp?: string;
+  website?: string;
   isApproved?: boolean;
   resetPasswordToken?: string;
   resetPasswordExpires?: Date;
@@ -26,6 +28,8 @@ const userSchema = new Schema<User>({
   address: { type: String },
   password: { type: String, required: function () { return this.provider === "local"; } },
   phone: { type: String, required: function () { return this.provider === "local"; } },
+  whatsapp: { type: String },
+  website: { type: String },
   // phone: { type: String, required: true },
   isApproved: { type: Boolean, default: false },
   resetPasswordToken: { type: String },

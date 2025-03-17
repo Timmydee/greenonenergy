@@ -26,6 +26,7 @@
     "cookie": "^1.0.2",
     "dotenv": "^16.4.7",
     "googleapis": "^144.0.0",
+    "jose": "^6.0.10",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.479.0",
     "mongoose": "^8.12.1",

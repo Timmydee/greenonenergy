@@ -22,9 +22,9 @@ const Sidebar = () => {
             </Button>
 
             <nav className="flex flex-col gap-4">
-                <Link href="/dashboard/vendor" className="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
+                {/* <Link href="/dashboard/vendor" className="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
                     <Home size={20} /> {!isCollapsed && 'Dashboard'}
-                </Link>
+                </Link> */}
                 <Link href="/dashboard/vendor/products" className="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
                     <Package size={20} /> {!isCollapsed && 'Products'}
                 </Link>
