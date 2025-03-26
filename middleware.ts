@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
   console.log("Cookies in middleware:", req.cookies.getAll());
 
   // Public routes that should NOT require authentication
-  const publicRoutes = ["/api/auth/login", "/api/auth/register"];
+  const publicRoutes = ["/api/auth/login", "/api/auth/register", "api/uploadimage"];
 
   if (publicRoutes.some((route) => req.nextUrl.pathname.startsWith(route))) {
     console.log("Skipping auth for public route:", req.nextUrl.pathname);

@@ -13,10 +13,10 @@ export async function GET(req: Request) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
     }
 
-    // Fetch vendor products
+    // Fetch all products for the authenticated vendor
     const products = await Product.find({ vendorId });
 
-    return NextResponse.json({ products }, { status: 200 });
+    return NextResponse.json({ message: "Products fetched", products }, { status: 200 });
   } catch (error) {
     console.error("Error fetching products:", error);
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });

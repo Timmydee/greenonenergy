@@ -28,3 +28,4 @@ const VendorSchema: Schema = new Schema(
 );
 
 export default mongoose.models.Vendor || mongoose.model<IVendor>("Vendor", VendorSchema);
+
