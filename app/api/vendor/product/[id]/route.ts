@@ -3,12 +3,10 @@ import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/dbConnect";
 import { verifyVendor } from "@/lib/verifyVendor/auth";
 
-// export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
 
   try {
     await connectToDatabase();
-    // const { id } = params;
     const id = (await params).id
 
 
@@ -46,12 +44,10 @@ import { verifyVendor } from "@/lib/verifyVendor/auth";
 
 
 
-  // export async function DELETE(req: Request, { params }: { params: { id: string } }) {
    export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
       await connectToDatabase();
   
-      // const { id } = params;
       const id = (await params).id
       if (!id) {
         return NextResponse.json({ message: "Product ID is required." }, { status: 400 });
