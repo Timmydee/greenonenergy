@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
@@ -20,6 +20,8 @@ const ProductSchema = z.object({
     .nonempty("Price is required")
     .transform((val) => Number(val)),
   category: z.enum(["Inverter", "Solar Panel"]),
+  capacity: z.string().optional(),
+  wattage: z.string().optional(),
   images: z
     .array(z.string())
     .min(1, "At least one image is required")
@@ -34,6 +36,7 @@ interface AddProductProps {
 
 export default function AddProduct({ onClose }: AddProductProps) {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [category, setCategory] = useState<"Inverter" | "Solar Panel">("Inverter");
   const queryClient = useQueryClient();
 
   const {
@@ -44,6 +47,10 @@ export default function AddProduct({ onClose }: AddProductProps) {
   } = useForm<ProductFormType>({
     resolver: zodResolver(ProductSchema),
   });
+
+  useEffect(() => {
+    setValue("category", category)
+  },[category, setValue])
 
   // Handle image selection and preview
   const handleImageChange = useCallback( async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,6 +106,8 @@ export default function AddProduct({ onClose }: AddProductProps) {
       description: data.description,
       price: data.price,
       category: data.category,
+      capacity: data.category === "Inverter" ? data.capacity : undefined,
+      wattage: data.category === "Solar Panel" ? data.wattage : undefined,
       imageUrls,
     }
 
@@ -159,7 +168,7 @@ export default function AddProduct({ onClose }: AddProductProps) {
           {/* Category */}
           <div className="mt-4">
             <Label htmlFor="category">Category</Label>
-            <select {...register("category")}>
+            <select {...register("category")} onChange={(e) => setCategory(e.target.value as "Inverter" | "Solar Panel")}>
               <option value="Inverter">Inverter</option>
               <option value="Solar Panel">Solar Panel</option>
             </select>
@@ -167,6 +176,20 @@ export default function AddProduct({ onClose }: AddProductProps) {
               <p className="text-red-500">{errors.category.message}</p>
             )}
           </div>
+
+          {category === "Inverter" && (
+            <div className="mt-4">
+              <Label htmlFor="capacity">Inverter Capacity</Label>
+              <Input type="text" {...register("capacity")} placeholder="Capacity (e.g. 5kVA)" />
+            </div>
+          )}
+
+          {category === "Solar Panel" && (
+            <div className="mt-4">
+              <Label htmlFor="wattage">Panel Wattage</Label>
+              <Input type="text" {...register("wattage")} placeholder="Wattage (e.g. 300W)" />
+            </div>
+          )}
 
           {/* Image Upload */}
           <div className="mt-4">

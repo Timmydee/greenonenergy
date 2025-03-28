@@ -15,7 +15,7 @@ import { verifyVendor } from "@/lib/verifyVendor/auth";
       return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
     }
 
-    const { name, description, price, category, imageUrls } = await req.json();
+    const { name, description, price, category, imageUrls, capacity, wattage } = await req.json();
 
     const product = await Product.findOne({ _id: id, vendorId });
 
@@ -32,6 +32,8 @@ import { verifyVendor } from "@/lib/verifyVendor/auth";
     if (price) product.price = price;
     if (category) product.category = category;
     if (imageUrls) product.imageUrls = imageUrls;
+    if (capacity) product.capacity = capacity;
+    if (wattage) product.wattage = wattage;
 
     await product.save();
 

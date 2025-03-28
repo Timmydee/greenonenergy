@@ -3,6 +3,19 @@ import { NextResponse } from "next/server";
 import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/dbConnect";
 import { verifyVendor } from "@/lib/verifyVendor/auth";
+import { z } from "zod";
+import { error } from "console";
+
+const ProductSchema = z.object({
+  name: z.string().nonempty("Product name is required"),
+  description: z.string().nonempty("Description is required"),
+  price: z.number().positive("Price must be greater than zero"),
+  category: z.enum(["Inverter", "Solar Panel"]),
+  imageUrls: z.array(z.string()).min(1, "At least one image is required"),
+  capacity: z.string().optional(),
+  wattage: z.string().optional(),
+});
+
 
 export async function POST(req: Request) {
   try {
@@ -11,7 +24,7 @@ export async function POST(req: Request) {
 
     // Parse the request body
     const body = await req.json();
-    const { name, description, price, category, imageUrls } = body;
+    // const { name, description, price, category, imageUrls } = body;
 
     const vendorId = await verifyVendor(req)
 
@@ -19,10 +32,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
     }
 
-    // Validate required fields
-    if (!name || !description || !price || !category || !imageUrls) {
+    const parsedBody = ProductSchema.safeParse(body)
+    if(!parsedBody.success) {
+      return NextResponse.json({ message: parsedBody.error.flatten().fieldErrors}, {status: 400})
+    }
+
+    const { name, description, price, category, imageUrls, capacity, wattage } = parsedBody.data;
+ 
+    if (category === "Inverter" && !capacity) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { error: "Capacity is required for Inverter" },
+        { status: 400 }
+      );
+    }
+
+    if (category === "Solar Panel" && !wattage) {
+      return NextResponse.json(
+        { error: "Wattage is required for Solar Panel" },
         { status: 400 }
       );
     }
@@ -35,6 +61,8 @@ export async function POST(req: Request) {
       price,
       category,
       imageUrls,
+      capacity: category === "Inverter" ? capacity : undefined,
+      wattage: category === "Solar Panel" ? wattage : undefined,
     });
 
     // Save the product to the database
@@ -48,7 +76,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Error adding product:", error);
     return NextResponse.json(
-      { error: "Failed to add product" },
+      { error: "Failed to add product", details: (error as Error).message },
       { status: 500 }
     );
   }

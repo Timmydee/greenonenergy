@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
@@ -9,17 +9,26 @@ import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 // Zod schema for form validation
 const ProductSchema = z.object({
   name: z.string().nonempty("Product name is required"),
   description: z.string().nonempty("Description is required"),
-  price: z
-    .string()
-    .nonempty("Price is required")
-    .transform((val) => Number(val)),
+  // price: z
+  //   .string()
+  //   .nonempty("Price is required")
+  //   .transform((val) => Number(val)),
+  price: z.number(),
   category: z.enum(["Inverter", "Solar Panel"]),
+  capacity: z.string().optional(),
+  wattage: z.string().optional(),
   images: z
     .array(z.string())
     .min(1, "At least one image is required")
@@ -35,12 +44,18 @@ interface EditProductProps {
     description: string;
     price: number;
     category: string;
+    capacity: string;
+    wattage: string;
     imageUrls: string[];
   };
   onClose: () => void;
 }
 
 export default function EditProduct({ product, onClose }: EditProductProps) {
+  const [category, setCategory] = useState<"Inverter" | "Solar Panel">(
+    "Inverter"
+  );
+
   const [previewImages, setPreviewImages] = useState<string[]>(
     product.imageUrls
   );
@@ -58,9 +73,15 @@ export default function EditProduct({ product, onClose }: EditProductProps) {
       description: product.description,
       price: product.price,
       category: product.category as "Inverter" | "Solar Panel",
+      capacity: product.capacity,
+      wattage: product.wattage,
       images: product.imageUrls,
     },
   });
+
+  useEffect(() => {
+    setValue("category", category);
+  }, [category, setValue]);
 
   // Handle image selection and preview
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +131,8 @@ export default function EditProduct({ product, onClose }: EditProductProps) {
         description: data.description,
         price: data.price,
         category: data.category,
+        capacity: data.category === "Inverter" ? data.capacity : undefined,
+        wattage: data.category === "Solar Panel" ? data.wattage : undefined,
         imageUrls,
       };
 
@@ -130,7 +153,7 @@ export default function EditProduct({ product, onClose }: EditProductProps) {
     <Dialog open={true} onOpenChange={onClose}>
       <DialogTitle>Add your Product</DialogTitle>
 
-      <DialogContent>
+      <DialogContent className="max-h-[90vh] overflow-y-auto p-6">
         <DialogHeader>
           <DialogTitle>Edit Product</DialogTitle>
           <DialogDescription>Edit your Product</DialogDescription>
@@ -186,6 +209,28 @@ export default function EditProduct({ product, onClose }: EditProductProps) {
               <p className="text-red-500">{errors.category.message}</p>
             )}
           </div>
+
+          {category === "Inverter" && (
+            <div className="mt-4">
+              <Label htmlFor="capacity">Inverter Capacity</Label>
+              <Input
+                type="text"
+                {...register("capacity")}
+                placeholder="Capacity (e.g. 5kVA)"
+              />
+            </div>
+          )}
+
+          {category === "Solar Panel" && (
+            <div className="mt-4">
+              <Label htmlFor="wattage">Panel Wattage</Label>
+              <Input
+                type="text"
+                {...register("wattage")}
+                placeholder="Wattage (e.g. 300W)"
+              />
+            </div>
+          )}
 
           {/* Image Upload */}
           <div className="mt-4">
