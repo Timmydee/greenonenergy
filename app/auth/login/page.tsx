@@ -46,7 +46,7 @@ const LoginPage = () => {
       const user = await fetchSession();
 
       if (user?.role === "vendor") {
-        router.push("/dashboard/vendor");
+        router.push("/dashboard/vendor/products");
       } else if (user?.role === "admin") {
         router.push("/dashboard/admin");
       } else if (user?.role === "client") {
