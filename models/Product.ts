@@ -1,9 +1,16 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IProduct extends Document {
-  vendorId: Types.ObjectId;
+  vendorId?: Types.ObjectId;
+  postedBy: "admin" | "vendor";
   name: string;
   description: string;
+  companyInfo?: {
+    companyName: string;
+    email: string;
+    phone: string;
+    website: string;
+  };
   price: number;
   size: number;
   category: "Inverter" | "Solar Panel";
@@ -22,10 +29,36 @@ export interface IProduct extends Document {
 const ProductSchema = new Schema<IProduct>(
   {
     vendorId: { type: Schema.Types.ObjectId, ref: "User", required: true }, // Reference to UserModel
+    postedBy: { type: String, enum: ["admin", "vendor"], required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
+    companyInfo: {
+      companyName: {
+        type: String,
+        required: function (this: IProduct) {
+          return this.postedBy === "admin";
+        },
+      },
+      email: {
+        type: String,
+        required: function (this: IProduct) {
+          return this.postedBy === "admin";
+        },
+      },
+      phone: {
+        type: String,
+        required: function (this: IProduct) {
+          return this.postedBy === "admin";
+        },
+      },
+      website: { type: String },
+    },
     price: { type: Number, required: true },
-    category: { type: String, enum: ["Inverter", "Solar Panel"], required: true },
+    category: {
+      type: String,
+      enum: ["Inverter", "Solar Panel"],
+      required: true,
+    },
     capacity: {
       type: String,
       required: function (this: IProduct) {
@@ -50,4 +83,5 @@ const ProductSchema = new Schema<IProduct>(
   { timestamps: true }
 );
 
-export default mongoose.models.Product || mongoose.model<IProduct>("Product", ProductSchema);
+export default mongoose.models.Product ||
+  mongoose.model<IProduct>("Product", ProductSchema);
