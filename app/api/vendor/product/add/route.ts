@@ -56,6 +56,7 @@ export async function POST(req: Request) {
     // Create a new product
     const product = new Product({
       vendorId,
+      postedBy: "vendor",
       name,
       description,
       price,
