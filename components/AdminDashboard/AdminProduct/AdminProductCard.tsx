@@ -5,8 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Image from "next/image";
-import DeleteProduct from "./DeleteProduct";
-import EditProduct from "./EditProduct";
+import AdminEditProduct from "./AdminEditProduct";
+import AdminDeleteProduct from "./AdminDeleteProduct";
 
 interface ProductProps {
   product: {
@@ -27,7 +27,7 @@ interface ProductProps {
   };
 }
 
-export default function ProductCard({ product }: ProductProps) {
+export default function AdminProductCard({ product }: ProductProps) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductProps) {
       <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all">
         {/* Display the first image or a fallback image */}
         <Image
-          src={product.imageUrls?.[0] || fallbackImage} // Use imageUrls instead of images
+          src={product.imageUrls?.[0] || fallbackImage}
           alt={product.name}
           width={300}
           height={200}
@@ -68,8 +68,8 @@ export default function ProductCard({ product }: ProductProps) {
       </Card>
 
       {/* Edit & Delete Modals */}
-      {showEditModal && <EditProduct product={product} onClose={() => setShowEditModal(false)} />}
-      {showDeleteModal && <DeleteProduct productId={product._id} onClose={() => setShowDeleteModal(false)} />}
+      {showEditModal && <AdminEditProduct product={product} onClose={() => setShowEditModal(false)} />}
+      {showDeleteModal && <AdminDeleteProduct productId={product._id} onClose={() => setShowDeleteModal(false)} />}
     </motion.div>
   );
 }
