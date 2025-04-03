@@ -1,13 +1,22 @@
-import jwt from "jsonwebtoken";
+import { jwtVerify } from "jose";
+import * as cookie from "cookie";
 
-export function verifyAdmin(req: Request) {
-  const token = req.headers.get("authorization")?.split(" ")[1];
-  if (!token) return false;
-
+export async function verifyAdmin(req: Request) {
   try {
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
-    return decoded.isAdmin === true; // Only allow admin users
+    const cookies = cookie.parse(req.headers.get("cookie") || "")
+    const token = cookies.authToken
+
+    if(!token) {
+      return null
+    }
+
+    const secretKey = new TextEncoder().encode(process.env.JWT_SECRET!)
+
+    const {payload} = await jwtVerify(token, secretKey)
+    return (payload as { id: string }).id;
   } catch (error) {
-    return false;
+    console.error("Error verifying token:", error);
+    return null;
   }
 }
+
