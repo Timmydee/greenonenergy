@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BiDownArrow } from "react-icons/bi";
 import { BsArrowUp } from "react-icons/bs";
 import InfoTooltip from "../ReuseableComponent/InfoToolTip";
+import { useRouter } from "next/navigation";
 
 interface EstimatorResultsProps {
   results: Results;
@@ -22,6 +23,7 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
   openModal,
   setOpenModal,
 }) => {
+  const router = useRouter()
   return (
     <div className="w-full">
       {/* <div
@@ -33,7 +35,9 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
         <div className="flex justify-between items-center">
           <div className="">
             <h5 className="h3">⚡ Your Energy Report</h5>
-            <p className="p2">Based on your input, here’s what you need to switch to solar</p>
+            <p className="p2">
+              Based on your input, here’s what you need to switch to solar
+            </p>
           </div>
           {/* <div
               data-testid="toggle_button"
@@ -126,6 +130,9 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
             <button
               className="bg-[#073743] hover:bg-[#08644A] text-white px-6 py-2 rounded mr-6 w-full mt-4"
               onClick={() => setOpenModal(!openModal)}
+              // onClick={() => {
+              //   router.push(`/recommendations?${results.inverterSize}&panelSize=${results.panelSize}`);
+              // }}
             >
               Get Recommendations
             </button>
