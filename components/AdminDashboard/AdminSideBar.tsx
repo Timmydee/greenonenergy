@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import LogoutButton from "../Auth/LogoutButton";
+import { BiLogIn } from "react-icons/bi";
 
 const AdminSidebar = ({
   isCollapsed,
@@ -38,6 +39,12 @@ const AdminSidebar = ({
           className="flex items-center gap-2 p-2 rounded hover:bg-gray-700"
         >
           <Package size={20} /> {!isCollapsed && "Products"}
+        </Link>
+        <Link
+          href="/dashboard/admin/blog"
+          className="flex items-center gap-2 p-2 rounded hover:bg-gray-700"
+        >
+          <BiLogIn size={20} /> {!isCollapsed && "Blog"}
         </Link>
         {/* <Link
           href="/dashboard/admin/profile"
