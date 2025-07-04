@@ -26,11 +26,6 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
   const router = useRouter()
   return (
     <div className="w-full">
-      {/* <div
-        className={`md:w-[94%] w-[98%] mx-auto fixe p-4 ${
-          open ? `lg:bottom-[-250px] bottom-0` : `lg:bottom-0 bottom-[-250px]`
-        } rounded-tr-md rounded-tl-md`}
-      > */}
       <div className="bg-white p-2 lg:py-6 py-2 space-y-4 text-black border w-full md:p-6 shadow-lg rounded-lg">
         <div className="flex justify-between items-center">
           <div className="">

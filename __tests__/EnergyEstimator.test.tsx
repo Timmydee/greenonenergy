@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import EnergyEstimator from '@/components/EnergyEstimator/EnergyEstimator'
-import { applianceData } from '@/utils/applianceData'
+import EnergyEstimator from '@/components/EnergyEstimator'
+import { applianceData } from '@/data/applianceData'
 
 describe('Energy Estimator Calculator', () => {
     test('render Appliance Input and Estimator Result', () => {

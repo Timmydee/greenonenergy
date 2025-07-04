@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -16,7 +16,7 @@ const fetchRecommendations = async (params: URLSearchParams) => {
   return response.data.data;
 };
 
-export default function RecommendationsPage() {
+function Recommendations() {
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState({
     totalLoad: searchParams.get("totalLoad") || "",
@@ -103,5 +103,13 @@ export default function RecommendationsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function RecommendationsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Recommendations />
+    </Suspense>
   );
 }

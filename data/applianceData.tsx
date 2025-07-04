@@ -4,14 +4,10 @@ import {
   GiLightBulb,
   GiCeilingLight,
   GiDeskLamp,
-  GiToaster,
   GiVacuumCleaner,
   GiLaptop,
-  GiHairStrands,
 } from "react-icons/gi";
 import {
-  MdOutlineKitchen,
-  MdLocalLaundryService,
   MdTv,
   MdComputer,
   MdRouter,
@@ -38,9 +34,6 @@ export const applianceData: Appliance[] = [
   { name: "Air Conditioner (1.5 Ton)", wattage: 2000, hours: 1, quantity: 1, icon: <TbAirConditioning /> },
   { name: "Water Heater (Geyser)", wattage: 2000, hours: 1, quantity: 1, icon: <LuHeater /> },
   { name: "Microwave Oven", wattage: 1200, hours: 1, quantity: 1, icon: <MdOutlineMicrowave /> },
-  // { name: "Electric Kettle", wattage: 1800, hours: 1, quantity: 1, icon: <FaPlug /> },
-  // { name: "Induction Cooktop", wattage: 2000, hours: 1, quantity: 1, icon: <MdOutlineKitchen /> },
-  // { name: "Toaster", wattage: 1200, hours: 1, quantity: 1, icon: <GiToaster /> },
   { name: "Washing Machine", wattage: 800, hours: 1, quantity: 1, icon: <LuWashingMachine /> },
   { name: "Clothes Iron", wattage: 1200, hours: 1, quantity: 1, icon: <MdOutlineIron /> },
   { name: "Vacuum Cleaner", wattage: 1000, hours: 1, quantity: 1, icon: <GiVacuumCleaner /> },
@@ -48,5 +41,4 @@ export const applianceData: Appliance[] = [
   { name: "Desktop Computer", wattage: 300, hours: 1, quantity: 1, icon: <MdComputer /> },
   { name: "Laptop", wattage: 75, hours: 1, quantity: 1, icon: <GiLaptop /> },
   { name: "Wi-Fi Router", wattage: 15, hours: 1, quantity: 1, icon: <MdRouter /> },
-  // { name: "Hair Dryer", wattage: 1500, hours: 1, quantity: 1, icon: <GiHairStrands /> },
 ];

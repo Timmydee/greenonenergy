@@ -1,4 +1,4 @@
-import EnergyEstimator from '@/components/EnergyEstimator/EnergyEstimator'
+import EnergyEstimator from '@/components/EnergyEstimator'
 import Hero from '@/components/EnergyEstimator/Hero'
 import React from 'react'
 
