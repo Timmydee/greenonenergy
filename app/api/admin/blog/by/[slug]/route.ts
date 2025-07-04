@@ -16,18 +16,21 @@
 //   }
 // }
 
-
 // app/api/blog/[slug]/route.ts
-import { NextResponse } from 'next/server';
-import { connectToDatabase } from '@/lib/dbConnect';
-import Post from '@/models/Post';
+import { NextResponse } from "next/server";
+import { connectToDatabase } from "@/lib/dbConnect";
+import Post from "@/models/Post";
 
-export async function GET(req: Request, { params }: { params: { slug: string } }) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   await connectToDatabase();
-  const post = await Post.findOne({ slug: params.slug, published: true });
+  const { slug } = await params;
+  const post = await Post.findOne({ slug: slug, published: true });
 
   if (!post) {
-    return NextResponse.json({ message: 'Post not found' }, { status: 404 });
+    return NextResponse.json({ message: "Post not found" }, { status: 404 });
   }
 
   return NextResponse.json(post);
