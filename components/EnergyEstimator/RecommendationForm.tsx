@@ -46,7 +46,6 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
       if (response.ok) {
         setIsLoading(false)
         setIsSuccess(true)
-        // alert("Thank you! We'll get back to you with recommendations.");
         setFormData({
           name: "",
           email: "",

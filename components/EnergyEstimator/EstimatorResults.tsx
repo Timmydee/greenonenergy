@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BiDownArrow } from "react-icons/bi";
 import { BsArrowUp } from "react-icons/bs";
 import InfoTooltip from "../ReuseableComponent/InfoToolTip";
+import { useRouter } from "next/navigation";
 
 interface EstimatorResultsProps {
   results: Results;
@@ -22,18 +23,16 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
   openModal,
   setOpenModal,
 }) => {
+  const router = useRouter()
   return (
     <div className="w-full">
-      {/* <div
-        className={`md:w-[94%] w-[98%] mx-auto fixe p-4 ${
-          open ? `lg:bottom-[-250px] bottom-0` : `lg:bottom-0 bottom-[-250px]`
-        } rounded-tr-md rounded-tl-md`}
-      > */}
       <div className="bg-white p-2 lg:py-6 py-2 space-y-4 text-black border w-full md:p-6 shadow-lg rounded-lg">
         <div className="flex justify-between items-center">
           <div className="">
             <h5 className="h3">⚡ Your Energy Report</h5>
-            <p className="p2">Based on your input, here’s what you need to switch to solar</p>
+            <p className="p2">
+              Based on your input, here’s what you need to switch to solar
+            </p>
           </div>
           {/* <div
               data-testid="toggle_button"
@@ -126,6 +125,9 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
             <button
               className="bg-[#073743] hover:bg-[#08644A] text-white px-6 py-2 rounded mr-6 w-full mt-4"
               onClick={() => setOpenModal(!openModal)}
+              // onClick={() => {
+              //   router.push(`/recommendations?${results.inverterSize}&panelSize=${results.panelSize}`);
+              // }}
             >
               Get Recommendations
             </button>

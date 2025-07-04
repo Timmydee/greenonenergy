@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import crypto from "crypto";
 import { connectToDatabase } from "@/lib/dbConnect";
 import UserModel from "@/models/User";
+import sendVerificationEmail from "@/lib/sendMail";
 
 export async function POST(req: Request) {
   try {
@@ -16,20 +18,26 @@ export async function POST(req: Request) {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    const verificationToken = crypto.randomBytes(32).toString("hex");
 
     // Create vendor user
     const vendor = new UserModel({
-      name: companyName,  // You can modify this if needed
+      name: companyName, 
       companyName,
       email,
       password: hashedPassword,
       phone,
       role: "vendor",
-      isApproved: false, // Requires admin approval
+      isApproved: false,
+      isVerified: false,
+      verificationToken,
     });
 
     await vendor.save();
-    return NextResponse.json({ message: "Vendor registered. Awaiting approval." }, { status: 201 });
+    const verificationUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verifyemail?token=${verificationToken}`;
+    await sendVerificationEmail(email, verificationUrl);
+
+    return NextResponse.json({ message: "Vendorregister registered. Please verify your email." }, { status: 201 });
   } catch (error) {
     console.error("Error registering vendor:", error);
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
