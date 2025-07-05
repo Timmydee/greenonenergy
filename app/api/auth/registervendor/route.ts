@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { connectToDatabase } from "@/lib/dbConnect";
 import UserModel from "@/models/User";
-import sendVerificationEmail from "@/lib/sendMail";
+import sendVerificationEmail from "@/lib/sendVerificationEmail";
 
 export async function POST(req: Request) {
   try {

@@ -7,6 +7,6 @@ export async function verifyToken(token: string) {
     const { payload } = await jwtVerify(token, secretKey);
     return payload; // Returns { id, role }
   } catch (error) {
-    return null; // Invalid token
+    return error;
   }
 }

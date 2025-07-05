@@ -1,8 +1,6 @@
 import { Results } from "@/types";
 import React from "react";
 import Image from "next/image";
-import { BiDownArrow } from "react-icons/bi";
-import { BsArrowUp } from "react-icons/bs";
 import InfoTooltip from "../ReuseableComponent/InfoToolTip";
 import { useRouter } from "next/navigation";
 
