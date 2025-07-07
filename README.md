@@ -1,6 +1,6 @@
 # ⚡ GreenOn Energy – Smart Solar Recommendation & Vendor Connection Platform
 
-**GreenOn Energy** is a solar-first platform that helps individuals and businesses in Nigeria calculate their daily energy usage and receive personalized solar system recommendations. We then connect users with verified solar vendors via WhatsApp, helping them make a smooth and confident transition to renewable energy.
+**GreenOn Energy** is a solar-first platform that helps individuals and households in Nigeria calculate their daily energy usage and receive personalized solar system recommendations. We then connect users with verified solar vendors via WhatsApp, helping them make a smooth and confident transition to renewable energy.
 
 ---
 
