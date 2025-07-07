@@ -5,7 +5,7 @@ interface InfoProps {
   infoMessage: string;
 }
 
-const InfoTooltip: React.FC<InfoProps> = ({ label, infoMessage }) => {
+const InfoTooltip: React.FC<InfoProps> = ({ infoMessage }) => {
   const [showInfo, setShowInfo] = useState(false);
 
   useEffect(()=> {

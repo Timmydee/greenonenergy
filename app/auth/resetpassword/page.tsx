@@ -48,7 +48,7 @@ function ResetPasswordForm() {
         router.push("/login");
       }, 2000);
     },
-    onError: (error: any) => {
+    onError: (error: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
       toast.error(error.response?.data?.message || "Something went wrong");
     },
   });

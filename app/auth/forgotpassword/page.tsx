@@ -33,7 +33,7 @@ export default function ForgotPassword() {
     onSuccess: (data) => {
       toast.success(data.message);
     },
-    onError: (error: any) => {
+    onError: (error: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
       toast.error(error.response?.data?.message || "Something went wrong");
     },
   });

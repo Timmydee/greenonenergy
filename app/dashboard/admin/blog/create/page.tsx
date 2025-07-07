@@ -99,6 +99,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useState } from 'react';
@@ -196,7 +197,7 @@ export default function CreateBlogPost() {
 
           {previewImage && (
             <div className="mt-2">
-              <img src={previewImage} alt="Preview" className="rounded-md w-full max-w-sm" />
+              <Image src={previewImage} alt="Preview" width={400} height={300} className="rounded-md w-full max-w-sm" />
             </div>
           )}
         </div>

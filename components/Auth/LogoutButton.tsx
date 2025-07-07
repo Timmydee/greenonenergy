@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const LogoutButton = ({isCollapsed}: any) => {
+const LogoutButton = ({isCollapsed}: {isCollapsed: boolean}) => {
   const router = useRouter()
 
   const logoutMutation = useMutation({
@@ -14,8 +14,8 @@ const LogoutButton = ({isCollapsed}: any) => {
       await axios.post("/api/auth/logout", {}, {withCredentials: true})
     },
     onSuccess: () => {
-      toast.success("Logged out successfully"),
-      router.push('/auth/login')
+      toast.success("Logged out successfully");
+      router.push('/auth/login');
     },
     onError: () => {
       toast.error("Error Logging out")

@@ -3,7 +3,6 @@ import { Geist, Gelasio, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import QueryClientWrapper from "@/lib/AppWrapper/AppWrapper";
 import AppWrapper from "@/lib/AppWrapper/AppWrapper";
 
 const geistSans = Geist({

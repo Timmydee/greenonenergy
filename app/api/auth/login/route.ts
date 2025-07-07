@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { connectToDatabase } from "@/lib/dbConnect";
 import UserModel from "@/models/User";
 import { SignJWT } from "jose";
@@ -19,10 +18,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // if(!user.isVerified) {
-    //   return NextResponse.json( { message: "Please verify your email first" }, { status: 401 });
-    // }
-
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -31,13 +26,6 @@ export async function POST(req: Request) {
         { status: 401 }
       );
     }
-
-    // // Generate JWT Token
-    // const token = jwt.sign(
-    //   { id: user._id, role: user.role },
-    //   process.env.JWT_SECRET!,
-    //   { expiresIn: "7d" }
-    // );
 
     const secretKey = new TextEncoder().encode(process.env.JWT_SECRET!);
 
@@ -54,8 +42,8 @@ export async function POST(req: Request) {
 
     response.cookies.set("authToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Only secure in production
-      sameSite: "lax", // More relaxed for development
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 7 days
     });
@@ -63,8 +51,8 @@ export async function POST(req: Request) {
     return response;
 
     // return NextResponse.json({ message: "Login successful", token, role: user.role }, { status: 200 });
-  } catch (error) {
-    console.error("Login error:", error);
+  } catch {
+    // console.error("Login error:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

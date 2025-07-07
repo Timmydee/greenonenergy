@@ -57,17 +57,16 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
 
   // Extract optional filters
-  const capacity = url.searchParams.get("capacity"); // Inverter size
-  const wattage = url.searchParams.get("wattage"); // Panel size
-  const price = url.searchParams.get("price"); // Budget
+  const capacity = url.searchParams.get("capacity");
+  const wattage = url.searchParams.get("wattage"); 
+  const price = url.searchParams.get("price");
 
-  // Build query filter dynamically
-  const filter: any = {};
+
+  const filter: any = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
   
-  if (capacity) filter.capacity = capacity; // Match exact inverter capacity
-  if (wattage) filter.wattage = wattage; // Match exact panel wattage
-  if (price) filter.price = { $lte: Number(price) }; // Ensure price is within budget
-
+  if (capacity) filter.capacity = capacity; 
+  if (wattage) filter.wattage = wattage; 
+  if (price) filter.price = { $lte: Number(price) };
   // Fetch matching products
   const products = await Product.find(filter).limit(10);
 

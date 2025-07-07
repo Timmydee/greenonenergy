@@ -1,16 +1,16 @@
 // /app/api/blog/route.ts
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/dbConnect";
 import Post from "@/models/Post";
 import { verifyAdmin } from "@/lib/VerifyAdmin/auth";
 
-export async function GET(req: Request) {
+export async function GET() {
   await connectToDatabase();
   const posts = await Post.find({ published: true }).sort({ createdAt: -1 });
   return NextResponse.json(posts);
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     await connectToDatabase();
     const body = await req.json();
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     });
     await post.save();
     return NextResponse.json(post, { status: 201 });
-  } catch (error) {
+  } catch {
     // console.error("Error in POST /api/admin/blog:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },

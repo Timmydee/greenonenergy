@@ -1,7 +1,7 @@
 import { google } from "googleapis";
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function POST(req: any) {
+export async function POST(req: NextRequest) {
   try {
     const { name, email, phone, energyUsage, inverterSize, panelSize } = await req.json();
 

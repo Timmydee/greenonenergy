@@ -55,7 +55,7 @@ const LoginPage = () => {
         router.push("/auth");
       }
     },
-    onError: (error: any) => {
+    onError: (error: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
       toast.error(error.response?.data?.message || "Login Failed");
     },
   });
@@ -105,7 +105,7 @@ const LoginPage = () => {
       </div>
       <div className="mt-4">
         <p>
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <a className="text-blue-500" href="/auth/registervendor">
             Register as a vendor
           </a>

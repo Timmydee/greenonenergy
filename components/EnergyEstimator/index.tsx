@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Appliance, Results } from "@/types";
 import { applianceData } from "@/data/applianceData";
 import ApplianceInput from "./ApplianceInput";
@@ -22,11 +22,7 @@ const EnergyEstimator = () => {
     environmentalImpact: 0,
   });
 
-  useEffect(() => {
-    if (selectedAppliances.length > 0) {
-      handleCalculate();
-    }
-  }, [appliances]);
+  // useEffect moved after handleCalculate function
 
   const handleToggleAppliance = (name: string) => {
     setSelectedAppliances((prevSelected) => {
@@ -65,7 +61,7 @@ const EnergyEstimator = () => {
     );
   };
 
-  const handleCalculate = () => {
+  const handleCalculate = useCallback(() => {
     const totalEnergy = selectedAppliances.reduce((total, name) => {
       const appliance = appliances.find((a) => a.name === name);
       return appliance
@@ -91,8 +87,7 @@ const EnergyEstimator = () => {
       (min ? totalLoadVA >= min : true) && (max ? totalLoadVA < max : true)
     )?.size || "Unknown";
   
-    // Calculate Environmental Impact (CO2 savings)
-    const environmentalImpact = Number((totalEnergy * 0.85).toFixed(2));
+    // Calculate Environmental Impact (CO2 savings) - removed unused variable
   
 
     setResults({
@@ -103,7 +98,13 @@ const EnergyEstimator = () => {
       totalLoad: totalLoadVA,
       environmentalImpact: Number((totalEnergy * 0.85).toFixed(2)),
     });
-  };
+  }, [selectedAppliances, appliances]);
+
+  useEffect(() => {
+    if (selectedAppliances.length > 0) {
+      handleCalculate();
+    }
+  }, [appliances, selectedAppliances.length, handleCalculate]);
 
   const handleReset = () => {
     setSelectedAppliances([]);

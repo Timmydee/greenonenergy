@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogTrigger, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Link from 'next/link';
+import Image from 'next/image';
 import { toast } from 'react-hot-toast';
 
 const fetchBlogPosts = async () => {
@@ -63,12 +64,14 @@ export default function AdminBlogDashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post: any) => (
+        {posts.map((post: { _id: string; title: string; slug: string; metaDescription: string; imageUrl?: string }) => (
           <Card key={post._id} className="overflow-hidden">
             {post.imageUrl && (
-              <img
+              <Image
                 src={post.imageUrl}
                 alt={post.title}
+                width={400}
+                height={192}
                 className="w-full h-48 object-cover"
               />
             )}

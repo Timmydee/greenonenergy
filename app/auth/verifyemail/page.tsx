@@ -1,6 +1,5 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -20,7 +19,7 @@ function VerifyEmailPageForm() {
         await axios.get(`/api/auth/verifyemail?token=${token}`);
         toast.success("Email verified successfully!");
         setTimeout(() => router.push("/auth/login"), 2000);
-      } catch (error) {
+      } catch {
         toast.error("Invalid or expired token.");
       } finally {
         setLoading(false);

@@ -17,7 +17,7 @@ export async function GET(
     }
 
     return NextResponse.json(post);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Failed to fetch post" },
       { status: 500 }
@@ -45,7 +45,7 @@ export async function PATCH(
       return NextResponse.json({ message: "Post not found" }, { status: 404 });
 
     return NextResponse.json(updated);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Failed to update post" },
       { status: 500 }
@@ -70,7 +70,7 @@ export async function DELETE(
       return NextResponse.json({ message: "Post not found" }, { status: 404 });
 
     return NextResponse.json({ message: "Post deleted" });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Failed to delete post" },
       { status: 500 }

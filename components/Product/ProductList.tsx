@@ -40,7 +40,22 @@ export default function ProductList() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {data.products.map((product: any) => (
+        {data.products.map((product: {
+          _id: string;
+          name: string;
+          description: string;
+          price: number;
+          category: string;
+          capacity: string;
+          wattage: string;
+          imageUrls: string[];
+          companyInfo: {
+            companyName: string;
+            email: string;
+            phone: string;
+            website?: string;
+          };
+        }) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>

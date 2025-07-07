@@ -9,6 +9,7 @@ import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -100,7 +101,7 @@ export default function AdminAddProduct({ onClose }: AddProductProps) {
   });
 
   const updateProductMutation = useMutation({
-    mutationFn: async (productData: any) => {
+    mutationFn: async (productData: ProductFormType & { imageUrls: string[] }) => {
       const response = await axios.post("/api/admin/product/add", productData);
       return response.data;
     },
@@ -240,7 +241,7 @@ export default function AdminAddProduct({ onClose }: AddProductProps) {
           {previewImages.length > 0 && (
             <div className="mt-4">
               {previewImages.map((src, index) => (
-                <img
+                <Image
                   key={index}
                   src={src}
                   alt="Preview"

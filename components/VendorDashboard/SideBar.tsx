@@ -1,13 +1,11 @@
 'use client'
 
-import { Menu, X, Home, Package, User, LogOut } from 'lucide-react';
+import { Menu, X, Package, User } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
 import LogoutButton from '../Auth/LogoutButton';
 
 const Sidebar = ({isCollapsed, setIsCollapsed} : {isCollapsed: boolean, setIsCollapsed: (collapsed: boolean) => void}) => {
-    const router = useRouter()
 
     return (
         <div className={`h-screen bg-gray-900 text-white ${isCollapsed ? 'w-16' : 'w-64'} transition-all duration-300 p-4`}>

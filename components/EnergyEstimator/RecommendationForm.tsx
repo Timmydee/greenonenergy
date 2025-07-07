@@ -20,9 +20,10 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
     name: "",
     email: "",
     phone: "",
-    energyUsage: results?.totalEnergy || 0,
-    inverterSize: results?.inverterSize || 0,
-    panelSize: results?.panelSize || 0,
+    summary: results,
+    // energyUsage: results?.totalEnergy || 0,
+    // inverterSize: results?.inverterSize || 0,
+    // panelSize: results?.panelSize || 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,39 +31,64 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    setIsLoading(true)
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   setIsLoading(true)
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await fetch("/api/submit", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (response.ok) {
+  //       setIsLoading(false)
+  //       setIsSuccess(true)
+  //       setFormData({
+  //         name: "",
+  //         email: "",
+  //         phone: "",
+  //         energyUsage: results?.totalEnergy || 0,
+  //         inverterSize: results?.inverterSize || 0,
+  //         panelSize: results?.panelSize || 0,
+  //       });
+  //     } else {
+  //       setIsLoading(false)
+  //       alert("Something went wrong. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     setIsLoading(false)
+  //     console.error(error);
+  //     alert("Failed to submit form.");
+  //   }
+  // };
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+    const res = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-    try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setIsLoading(false)
+    if (res.ok) {
+      setIsLoading(false)
         setIsSuccess(true)
         setFormData({
           name: "",
           email: "",
           phone: "",
-          energyUsage: results?.totalEnergy || 0,
-          inverterSize: results?.inverterSize || 0,
-          panelSize: results?.panelSize || 0,
-        });
-      } else {
-        setIsLoading(false)
+          summary: results
+        })
+    } else {
+        setIsLoading(false);
         alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      setIsLoading(false)
-      console.error(error);
-      alert("Failed to submit form.");
-    }
+    } 
   };
 
   return (

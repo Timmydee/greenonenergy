@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -67,7 +68,7 @@ export default function AdminEditProduct({
   product,
   onClose,
 }: EditProductProps) {
-  const [category, setCategory] = useState<"Inverter" | "Solar Panel">(
+  const [category] = useState<"Inverter" | "Solar Panel">(
     "Inverter"
   );
 
@@ -118,20 +119,7 @@ export default function AdminEditProduct({
     }
   };
 
-  // Mutation to upload images to Cloudinary (or your backend)
-  const uploadImagesMutation = useMutation({
-    mutationFn: async (images: string[]) => {
-      const { data } = await axios.post("/api/uploadimage", { images });
-      return data.imageUrls;
-    },
-    onSuccess: (imageUrls) => {
-      setValue("images", imageUrls);
-      toast.success("Images uploaded successfully!");
-    },
-    onError: () => {
-      toast.error("Failed to upload images.");
-    },
-  });
+  // Removed unused uploadImagesMutation
 
   const onSubmit = async (data: ProductFormType) => {
     try {
@@ -265,7 +253,7 @@ export default function AdminEditProduct({
           {previewImages.length > 0 && (
             <div className="mt-4">
               {previewImages.map((src, index) => (
-                <img
+                <Image
                   key={index}
                   src={src}
                   alt="Preview Inverter or Solar"

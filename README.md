@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ GreenOn Energy – Smart Solar Recommendation & Vendor Connection Platform
 
-## Getting Started
+**GreenOn Energy** is a solar-first platform that helps individuals and businesses in Nigeria calculate their daily energy usage and receive personalized solar system recommendations. We then connect users with verified solar vendors via WhatsApp, helping them make a smooth and confident transition to renewable energy.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🔋 Energy Load Calculator – Estimate daily electricity usage (in kWh/day)
+- ⚙️ Recommended inverter and solar panel size
+- 📩 Automatic email with full solar setup summary
+- 🤝 WhatsApp-based referral to verified solar vendors
+- 💼 Admin and Vendor dashboards (coming soon)
+- 💳 Solar loan integration (coming soon)
+
+---
+
+## 📸 Screenshot
+
+![GreenOnEnergy Screenshot](public/screenshot.png)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Timmydee/greenonenergy.git
+cd altplug
+````
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Create `.env.local` and configure:
+
+```env
+# MongoDB
+MONGODB_URI=mongodb+srv://your_user:your_password@cluster.mongodb.net/altplug
+
+# Email (Nodemailer SMTP config)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+
+# App Base URL
+BASE_URL=http://localhost:3000
+```
+
+### 4. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to use the platform locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧠 Tech Stack
 
-## Learn More
+* [Next.js 14 (App Router)](https://nextjs.org/)
+* [MongoDB + Mongoose](https://mongoosejs.com/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [Nodemailer](https://nodemailer.com/about/)
+* TypeScript
+* Deployed on [Vercel](https://vercel.com/)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Roadmap
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* [x] Solar calculator MVP
+* [x] Send personalized results via email
+* [x] Vendor WhatsApp referral
+* [x] Vendor registration & dashboard
+* [ ] Admin approval panel
+* [ ] Solar loan partnership integration
+* [ ] PDF summary version
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🙋‍♂️ Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pull requests are welcome! For major feature discussions or questions, please open an issue first.
+
+---
+
+## 📧 Contact
+
+Built by [@TimmyDee](https://github.com/timmydee)
+
+---
+
+## 📄 License
+
+MIT License. See the `LICENSE` file for more details.
+

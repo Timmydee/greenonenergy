@@ -13,8 +13,8 @@ export async function GET(
 ) {
   try {
     // Dynamic imports
-    const { connectToDatabase } = await import("@/lib/dbConnect");
-    const Post = (await import("@/models/Post")).default;
+    // const { connectToDatabase } = await import("@/lib/dbConnect");
+    // const Post = (await import("@/models/Post")).default;
     
     await connectToDatabase();
     const { slug } = await params;
