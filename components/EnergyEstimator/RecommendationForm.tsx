@@ -67,7 +67,7 @@ const RecommendationForm = ({ results, setOpenModal }: RecommendationFormProps) 
   // };
 
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     const res = await fetch('/api/send-email', {

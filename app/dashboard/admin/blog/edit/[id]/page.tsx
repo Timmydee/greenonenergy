@@ -114,6 +114,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import Image from 'next/image';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -156,7 +157,7 @@ export default function EditBlogPost() {
         setValue('metaDescription', data.metaDescription);
         setValue('content', data.content);
         setCurrentImage(data.imageUrl);
-      } catch (err) {
+      } catch {
         toast.error('Failed to fetch post');
       } finally {
         setLoading(false);
@@ -210,7 +211,7 @@ export default function EditBlogPost() {
 
       toast.success('Post updated');
       router.push('/dashboard/admin/blog');
-    } catch (err) {
+    } catch {
       toast.error('Failed to update post');
     }
   };
@@ -252,7 +253,7 @@ export default function EditBlogPost() {
           {currentImage && (
             <div className="mb-2">
               <p className="text-sm mb-1">Current Image:</p>
-              <img src={currentImage} alt="Current" className="w-full max-h-48 object-cover rounded" />
+              <Image src={currentImage} alt="Current" width={400} height={192} className="w-full max-h-48 object-cover rounded" />
             </div>
           )}
 

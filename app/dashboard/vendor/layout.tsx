@@ -1,16 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, Package, User, LogOut } from "lucide-react";
 import Sidebar from "@/components/VendorDashboard/SideBar";
 
-const sidebarLinks = [
-  { name: "Dashboard", icon: Home, path: "/dashboard/vendor" },
-  { name: "Products", icon: Package, path: "/dashboard/vendor/products" },
-  { name: "Profile", icon: User, path: "/dashboard/vendor/profile" },
-];
+// Removed unused sidebarLinks
 
 export default function VendorDashboardLayout({
   children,
@@ -20,7 +14,7 @@ export default function VendorDashboardLayout({
   // const [active, setActive] = useState("Dashboard");
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const router = useRouter();
+  // Removed unused router
 
   return (
     <div className="flex min-h-screen relative">

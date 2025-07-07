@@ -85,7 +85,7 @@ function Recommendations() {
       {/* Products List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {products?.length > 0 ? (
-          products.map((product: any) => (
+          products.map((product: { _id: string; name: string; loadCapacity: number; inverterSize: number; panelSize: number; price: number }) => (
             <Card key={product._id} className="shadow-md">
               <CardHeader>
                 <CardTitle>{product.name}</CardTitle>

@@ -9,7 +9,18 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendMail = async ({ to, subject, text, html, attachments }: any) => {
+interface MailOptions {
+  to: string;
+  subject: string;
+  text?: string;
+  html?: string;
+  attachments?: Array<{
+    filename: string;
+    content: string | Buffer;
+  }>;
+}
+
+export const sendMail = async ({ to, subject, text, html, attachments }: MailOptions) => {
   await transporter.sendMail({
     from: `GreenOn Energy <${process.env.EMAIL_USER}>`,
     to,

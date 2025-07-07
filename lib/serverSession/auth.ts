@@ -30,7 +30,7 @@
 import { cookies } from "next/headers";
 import { jwtVerify, jwtDecrypt } from "jose";
 
-export async function getServerSession(req: Request) {
+export async function getServerSession() {
   try {
     const cookieStore = await cookies();
 
@@ -46,7 +46,7 @@ export async function getServerSession(req: Request) {
       return null;
     }
 
-    let payload: any;
+    let payload: Record<string, unknown>;
 
     // Determine which secret to use based on the token source
     if (cookieStore.get("authToken")) {

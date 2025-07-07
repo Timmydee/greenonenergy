@@ -3,7 +3,6 @@
 import { Menu, X, Package } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import LogoutButton from "../Auth/LogoutButton";
 import { BiLogIn } from "react-icons/bi";
 
@@ -14,7 +13,7 @@ const AdminSidebar = ({
   isCollapsed: boolean;
   setIsCollapsed: (collapsed: boolean) => void;
 }) => {
-  const router = useRouter();
+  // Removed unused router
 
   return (
     <div

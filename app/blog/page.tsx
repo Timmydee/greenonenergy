@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 interface BlogPost {
@@ -45,9 +46,11 @@ export default function ClientBlogPage() {
             className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all border border-gray-100 flex flex-col"
           >
             {blog.imageUrl && (
-              <img
+              <Image
                 src={blog.imageUrl}
                 alt={blog.title}
+                width={400}
+                height={208}
                 className="h-52 w-full object-cover transition-transform hover:scale-105 duration-300"
               />
             )}

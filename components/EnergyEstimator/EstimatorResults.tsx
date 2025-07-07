@@ -2,7 +2,6 @@ import { Results } from "@/types";
 import React from "react";
 import Image from "next/image";
 import InfoTooltip from "../ReuseableComponent/InfoToolTip";
-import { useRouter } from "next/navigation";
 
 interface EstimatorResultsProps {
   results: Results;
@@ -15,13 +14,11 @@ interface EstimatorResultsProps {
 
 const EstimatorResults: React.FC<EstimatorResultsProps> = ({
   results,
-  open,
-  setOpen,
   handleReset,
   openModal,
   setOpenModal,
 }) => {
-  const router = useRouter()
+  // Removed unused variables: open, setOpen, router
   return (
     <div className="w-full">
       <div className="bg-white p-2 lg:py-6 py-2 space-y-4 text-black border w-full md:p-6 shadow-lg rounded-lg">

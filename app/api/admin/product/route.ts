@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/dbConnect";
 import { verifyAdmin } from "@/lib/VerifyAdmin/auth";
 
 // GET Method
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     await connectToDatabase();
 
@@ -23,6 +23,6 @@ export async function GET(req: Request) {
 }
 
 // POST Method (if needed)
-export async function POST(req: Request) {
+export async function POST() {
   return NextResponse.json({ message: "POST endpoint working" });
 }

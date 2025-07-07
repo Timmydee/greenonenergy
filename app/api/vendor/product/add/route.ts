@@ -4,7 +4,6 @@ import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/dbConnect";
 import { verifyVendor } from "@/lib/verifyVendor/auth";
 import { z } from "zod";
-import { error } from "console";
 
 const ProductSchema = z.object({
   name: z.string().nonempty("Product name is required"),
@@ -19,10 +18,8 @@ const ProductSchema = z.object({
 
 export async function POST(req: Request) {
   try {
-    // Connect to MongoDB
     await connectToDatabase()
 
-    // Parse the request body
     const body = await req.json();
     // const { name, description, price, category, imageUrls } = body;
 

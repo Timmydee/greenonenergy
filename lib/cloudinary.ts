@@ -27,7 +27,7 @@ export const uploadImages = async (images: string[]) => {
     );
     const results = await Promise.all(uploadPromises);
     return results.map((result) => result.secure_url); // Return array of uploaded image URLs
-  } catch (error) {
+  } catch {
     throw new Error("Image upload failed");
   }
 };
