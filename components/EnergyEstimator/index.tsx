@@ -22,7 +22,6 @@ const EnergyEstimator = () => {
     environmentalImpact: 0,
   });
 
-  // useEffect moved after handleCalculate function
 
   const handleToggleAppliance = (name: string) => {
     setSelectedAppliances((prevSelected) => {
@@ -75,19 +74,15 @@ const EnergyEstimator = () => {
     }, 0)
   
     const sunlightHours = 5;
-    const onePanel = 0.4; // 400W panel = 0.4kW
+    const onePanel = 0.4;
   
-    // Calculate Panel Size (kW)
     const panelSize = Number((totalEnergy / sunlightHours).toFixed(2));
   
-    // Calculate Number of Panels Required
     const noOfPanels = Math.ceil(panelSize / onePanel);
   
     const inverterSize = compareInverter.find(({ min, max }) => 
       (min ? totalLoadVA >= min : true) && (max ? totalLoadVA < max : true)
     )?.size || "Unknown";
-  
-    // Calculate Environmental Impact (CO2 savings) - removed unused variable
   
 
     setResults({

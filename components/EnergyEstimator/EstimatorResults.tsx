@@ -18,7 +18,6 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
   openModal,
   setOpenModal,
 }) => {
-  // Removed unused variables: open, setOpen, router
   return (
     <div className="w-full">
       <div className="bg-white p-2 lg:py-6 py-2 space-y-4 text-black border w-full md:p-6 shadow-lg rounded-lg">
@@ -29,13 +28,6 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               Based on your input, here’s what you need to switch to solar
             </p>
           </div>
-          {/* <div
-              data-testid="toggle_button"
-              onClick={() => setOpen(!open)}
-              className="border p-2 rounded-full lg:hidden block"
-            >
-              {open ? <BsArrowUp size={20} /> : <BiDownArrow size={20} />}
-            </div> */}
         </div>
         {results?.totalEnergy > 0 ? (
           <div className="mt-8">
