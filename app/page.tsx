@@ -1,6 +1,7 @@
 import EnergyEstimator from '@/components/EnergyEstimator'
 import Hero from '@/components/EnergyEstimator/Hero'
 import Navbar from '@/global/Navbar'
+import Footer from '@/global/Footer'
 import React from 'react'
 
 const page = () => {
@@ -10,6 +11,7 @@ const page = () => {
       <Hero />
       {/* <LocationInputs /> */}
       <EnergyEstimator />
+      <Footer />
     </div>
   )
 }

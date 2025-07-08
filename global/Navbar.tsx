@@ -10,7 +10,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-[#F5F7F7] lg:pt-4">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-sm rounded-2xl">
         <div className="flex justify-between items-center h-16">
-          <h1 className="text-2xl font-bold text-[#089E5F]">GreenOnEnergy</h1>
+          <h1 className="text-2xl font-bold text-[#089E5F]">GreenOn Energy</h1>
 
           <nav className="hidden md:flex items-center space-x-8">
             {/* <a href="#" className="text-gray-700 hover:text-green-600 transition duration-300">

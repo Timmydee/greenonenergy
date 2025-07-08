@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { SpeedInsights } from '@vercel/speed-insights/next';
 // import Navbar from "@/global/Navbar";
 import { Toaster } from "react-hot-toast";
+import SupportUsButton from "@/components/SupportUsButton/page";
 
 const AppWrapper = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(new QueryClient()); // Initialize QueryClient on the client
@@ -20,6 +21,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
         {/* <Analytics /> */}
         {/* <SpeedInsights /> */}
       </QueryClientProvider>
+      <SupportUsButton />
     </>
   );
 };
