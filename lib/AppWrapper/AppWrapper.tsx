@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import Navbar from "@/global/Navbar";
 import { Toaster } from "react-hot-toast";
 import SupportUsButton from "@/components/SupportUsButton/page";
+import Navbar2 from "@/global/Navbar";
 
 const AppWrapper = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(new QueryClient()); // Initialize QueryClient on the client
@@ -17,6 +18,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
       <Toaster position="top-right" />
       <QueryClientProvider client={queryClient}>
         {/* <Navbar /> */}
+        <Navbar2 />
         {children}
         {/* <Analytics /> */}
         {/* <SpeedInsights /> */}

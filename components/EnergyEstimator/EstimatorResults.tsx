@@ -110,7 +110,7 @@ const EstimatorResults: React.FC<EstimatorResultsProps> = ({
               </p>
             </div>
             <button
-              className="bg-[#073743] hover:bg-[#08644A] text-white px-6 py-2 rounded mr-6 w-full mt-4"
+              className="bg-[var(--greenon)] hover:bg-[var(--greenon-dark)]  text-white px-6 py-2 rounded mr-6 w-full mt-4"
               onClick={() => setOpenModal(!openModal)}
               // onClick={() => {
               //   router.push(`/recommendations?${results.inverterSize}&panelSize=${results.panelSize}`);
